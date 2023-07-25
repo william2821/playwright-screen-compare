@@ -1,0 +1,27 @@
+{
+  "name": "playwright-screen-compare",
+  "version": "1.0.0",
+  "description": "https://medium.com/@dneprokos/playwright-stories-visual-comparisons-with-dynamic-data-375e2fc02aef; https://qa-automation-test-site.web.app/login",
+  "main": "index.js",
+  "scripts": {
+    "npx-ui": "npx playwright test --ui",
+    "ui": "playwright test --ui",
+    "test": "playwright test first-screen-comparing.spec.ts --headed",
+    "test:headless": "playwright test funding-support.spec.ts",
+    "test:crossbrowsers:html": "playwright test --browser=all --reporter=html",
+    "test:crossbrowsers:list": "playwright test --browser=all --reporter=list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/William-Jarden/playwright-screen-compare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/William-Jarden/playwright-screen-compare/issues"
+  },
+  "homepage": "https://github.com/William-Jarden/playwright-screen-compare#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.36.1"
+  }
+}
