@@ -11,10 +11,11 @@ const config: PlaywrightTestConfig = {
 
      reporter: 'list',
     // reporter: 'html',
+    retries: 2,
 
     use: {
 //        channel: 'chrome',
-        channel: 'chromium',
+//        channel: 'chromium',
 //        channel: 'msedge',
         headless: false,
         actionTimeout: 0,
