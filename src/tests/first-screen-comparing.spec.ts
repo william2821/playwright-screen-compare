@@ -6,7 +6,7 @@ import {QaRolesPage} from "../pages/qa-roles.page";
 const url = configApp.baseURL;
 const username = configApp.username
 const password = configApp.password
-
+let inputFields
 
 test.use({
     viewport: {
@@ -19,32 +19,36 @@ test.use({
     }
 })
 
+test.describe.parallel('Practice test demo', async () => {
 
-test.beforeEach(async ({page}) => {
-    await page.goto(url)
-    await page.waitForLoadState('networkidle')
+    test.beforeEach(async ({page}) => {
+        await page.goto(url)
+        await page.waitForLoadState('networkidle', {timeout: 60000})
+        let loginTest = new LoginPage(page);
+        await loginTest.loginHomepage(username, password)
+        await expect(page).toHaveScreenshot()
+        inputFields = new QaRolesPage(page)
+    });
 
-    let loginTest = new LoginPage(page);
-    await loginTest.loginHomepage(username, password)
-    await expect(page).toHaveScreenshot()
+    test('Check button enabled', async ({page}) => {
+        await inputFields.getQaRolesPage()
+        let button = await inputFields.checkPrintButton()
+        await expect(button).toBeEnabled()
+        await expect(button).toHaveText('Print details')
+        await expect.soft(button).toHaveText('Print details')
+    })
 
-});
+    test('Should be able to log screenshot', async ({page}) => {
 
-test('Should be able to log screenshot', async ({page}) => {
-    // let loginTest = new LoginPage(page);
-    // await loginTest.loginHomepage(username, password)
-    let inputFields = new QaRolesPage(page)
-    await inputFields.getQaRolesPage()
-    await inputFields.fillingRolesDetails()
+        await inputFields.getQaRolesPage()
+        await inputFields.fillingRolesDetails()
 //    await expect(page).toHaveScreenshot()
 //    await expect(page).toHaveScreenshot({maxDiffPixels: 10});
-//x    await expect(page).toHaveScreenshot({mask: [page.locator(‘#lastName’) ], maskColor: ‘red’});
 
-    await expect(page).toHaveScreenshot({
-        mask: [ page.locator('#firstName'), page.locator('#lastName') ],
-//        maskColor: 'red'
-        maskColor: 'yellow'
-    });
+        await expect(page).toHaveScreenshot({
+            mask: [page.locator('#firstName'), page.locator('#lastName')],
+            maskColor: 'yellow'
+        });
+    })
+
 })
-
-

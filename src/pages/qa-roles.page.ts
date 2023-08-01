@@ -19,4 +19,8 @@ export class QaRolesPage {
         await this.page.locator("input[id='lastName']").fill(lastname)
     }
 
+    async checkPrintButton() {
+        return await this.page.locator("button[id='print']")
+    }
+
 }

@@ -7,7 +7,7 @@
     "npx-ui": "npx playwright test --ui",
     "ui": "playwright test --ui",
     "test": "playwright test first-screen-comparing.spec.ts --headed",
-    "test:headless": "playwright test funding-support.spec.ts",
+    "test:headless": "playwright test first-screen-comparing.spec.ts",
     "test:crossbrowsers:html": "playwright test --browser=all --reporter=html",
     "test:crossbrowsers:list": "playwright test --browser=all --reporter=list"
   },
